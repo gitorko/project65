@@ -1,2 +1,8 @@
-server:
-  port: 8080
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    host: localhost
+    username: test
+    password: test@123
+    name: test-db
