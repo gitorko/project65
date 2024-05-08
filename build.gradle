@@ -33,7 +33,6 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:junit-jupiter'
-//    testImplementation 'org.testcontainers:r2dbc:1.18.3'
 }
 
 tasks.named('test') {
