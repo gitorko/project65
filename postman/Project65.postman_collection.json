@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "4cd30b5f-843a-4fda-88fc-89929b2454ee",
+		"name": "Project65",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4185850"
+	},
+	"item": [
+		{
+			"name": "Save Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"roger\",\n    \"age\": 32,\n    \"metadata\" : \"{\\\"city\\\": \\\"bangalore\\\"}\",\n    \"paymentType\" : \"ANNUAL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/ca810ab1-1a1a-4b85-aa5e-4560947816f7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"ca810ab1-1a1a-4b85-aa5e-4560947816f7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"ca810ab1-1a1a-4b85-aa5e-4560947816f7\",\n    \"name\": \"roger\",\n    \"age\": 33,\n    \"metadata\" : \"{\\\"city\\\": \\\"bangalore\\\"}\",\n    \"paymentType\" : \"ANNUAL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/customer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Customer By Name & Age",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/find?name=roger&age=33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"find"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "roger"
+						},
+						{
+							"key": "age",
+							"value": "33"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/search?name=roger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "roger"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/page?page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"page"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/customer/d20f414e-f549-4264-8843-099f5e9b2b94",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customer",
+						"d20f414e-f549-4264-8843-099f5e9b2b94"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
