@@ -10,24 +10,24 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class PgContainer {
 
     @Container
-    private static final PostgreSQLContainer container = new PostgreSQLContainer("postgres:14");
+    private static final PostgreSQLContainer pgContainer = new PostgreSQLContainer("postgres:14");
 
     static {
-        container.start();
+        pgContainer.start();
     }
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.liquibase.enabled", () -> true);
         registry.add("spring.liquibase.change-log", () -> "db/changelog/db.changelog-main.yaml");
-        registry.add("spring.liquibase.url", container::getJdbcUrl);
-        registry.add("spring.liquibase.user", container::getUsername);
-        registry.add("spring.liquibase.password", container::getPassword);
+        registry.add("spring.liquibase.url", pgContainer::getJdbcUrl);
+        registry.add("spring.liquibase.user", pgContainer::getUsername);
+        registry.add("spring.liquibase.password", pgContainer::getPassword);
 
         registry.add("spring.r2dbc.url", () -> "r2dbc:postgresql://"
-                + container.getHost() + ":" + container.getFirstMappedPort()
-                + "/" + container.getDatabaseName());
-        registry.add("spring.r2dbc.username", () -> container.getUsername());
-        registry.add("spring.r2dbc.password", () -> container.getPassword());
+                + pgContainer.getHost() + ":" + pgContainer.getFirstMappedPort()
+                + "/" + pgContainer.getDatabaseName());
+        registry.add("spring.r2dbc.username", () -> pgContainer.getUsername());
+        registry.add("spring.r2dbc.password", () -> pgContainer.getPassword());
     }
 }
