@@ -4,6 +4,10 @@ spring:
     username: test
     password: test@123
     name: test-db
+    pool:
+      enabled: true
+      initial-size: 10
+      maxSize: 30
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-main.yaml
