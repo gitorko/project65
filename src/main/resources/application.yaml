@@ -3,7 +3,6 @@ spring:
     url: r2dbc:postgresql://localhost:5432/test-db
     username: test
     password: test@123
-    name: test-db
     pool:
       enabled: true
       initial-size: 10
