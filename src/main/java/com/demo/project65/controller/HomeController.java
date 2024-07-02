@@ -3,7 +3,7 @@ package com.demo.project65.controller;
 import java.util.UUID;
 
 import com.demo.project65.domain.Customer;
-import com.demo.project65.repository.CustomerRepository;
+import com.demo.project65.service.CustomerService;
 import com.demo.project65.service.DataService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,55 +26,48 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/customer")
 public class HomeController {
 
-    final CustomerRepository customerRepository;
+    final CustomerService customerService;
     final DataService dataService;
 
     @GetMapping("/all")
     public Flux<Customer> findAll() {
-        return customerRepository.findAll();
+        return customerService.findAll();
     }
 
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Customer>> findById(@PathVariable UUID id) {
-        return customerRepository.findById(id)
+        return customerService.findById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PostMapping(value = "/save")
     public Mono<Customer> save(@RequestBody Customer customer) {
-        return customerRepository.save(customer);
+        return customerService.save(customer);
     }
 
     @PutMapping(value = "/update")
     public Mono<Customer> update(@RequestBody Customer customer) {
-        return customerRepository.findById(customer.getId())
-                .flatMap(c -> {
-                    c.setName(customer.getName());
-                    c.setAge(customer.getAge());
-                    c.setPaymentType(customer.getPaymentType());
-                    return Mono.just(c);
-                })
-                .flatMap(p -> customerRepository.save(p));
+        return customerService.update(customer);
     }
 
     @DeleteMapping(value = "/{id}")
     public Mono<Void> delete(@PathVariable UUID id) {
-        return customerRepository.deleteById(id);
+        return customerService.deleteById(id);
     }
 
     @GetMapping("/find")
     public Flux<Customer> find(@RequestParam String name, @RequestParam Integer age) {
-        return customerRepository.findByNameAndAge(name, age);
+        return customerService.findByNameAndAge(name, age);
     }
 
     @GetMapping("/page")
     public Mono<Page<Customer>> findPage(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return dataService.getCustomers(PageRequest.of(page, size));
+        return customerService.findAllByPage(PageRequest.of(page, size));
     }
 
-    @GetMapping("/search")
-    public Flux<Customer> search(Customer customer) {
-        return dataService.search(customer);
+    @PostMapping("/search")
+    public Flux<Customer> search(@RequestBody Customer customer) {
+        return customerService.search(customer);
     }
 }

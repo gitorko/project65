@@ -13,3 +13,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/test-db
     user: test
     password: test@123
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG

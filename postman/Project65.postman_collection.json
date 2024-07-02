@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4cd30b5f-843a-4fda-88fc-89929b2454ee",
+		"_postman_id": "c7985eeb-ffd6-41e9-807d-ba271d559ec3",
 		"name": "Project65",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4185850"
@@ -61,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/customer/ca810ab1-1a1a-4b85-aa5e-4560947816f7",
+					"raw": "http://localhost:8080/customer/6ebec980-feba-474d-995c-422f82bb226c",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -69,7 +69,7 @@
 					"port": "8080",
 					"path": [
 						"customer",
-						"ca810ab1-1a1a-4b85-aa5e-4560947816f7"
+						"6ebec980-feba-474d-995c-422f82bb226c"
 					]
 				}
 			},
@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": \"ca810ab1-1a1a-4b85-aa5e-4560947816f7\",\n    \"name\": \"roger\",\n    \"age\": 33,\n    \"metadata\" : \"{\\\"city\\\": \\\"bangalore\\\"}\",\n    \"paymentType\" : \"ANNUAL\"\n}",
+					"raw": "{\n    \"id\": \"6ebec980-feba-474d-995c-422f82bb226c\",\n    \"name\": \"roger\",\n    \"age\": 33,\n    \"metadata\" : \"{\\\"city\\\": \\\"bangalore\\\"}\",\n    \"paymentType\" : \"ANNUAL\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -137,10 +137,19 @@
 		{
 			"name": "Search Customer",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"roger\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/customer/search?name=roger",
+					"raw": "http://localhost:8080/customer/search",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -149,12 +158,6 @@
 					"path": [
 						"customer",
 						"search"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "roger"
-						}
 					]
 				}
 			},

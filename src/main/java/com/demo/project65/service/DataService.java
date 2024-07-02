@@ -8,14 +8,9 @@ import com.demo.project65.repository.CustomerRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.r2dbc.postgresql.codec.Json;
 import io.r2dbc.spi.ConnectionFactory;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -23,12 +18,11 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class DataService {
 
-    @Autowired
-    CustomerRepository customerRepository;
-    @Autowired
-    ConnectionFactory connectionFactory;
+    final CustomerRepository customerRepository;
+    final ConnectionFactory connectionFactory;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -73,17 +67,6 @@ public class DataService {
                 .paymentType(PaymentType.ANNUAL)
                 .build();
         return customerRepository.save(customer);
-    }
-
-    public Mono<Page<Customer>> getCustomers(PageRequest pageRequest) {
-        return customerRepository.findAllBy(pageRequest.withSort(Sort.by("name").descending()))
-                .collectList()
-                .zipWith(customerRepository.count())
-                .map(t -> new PageImpl<>(t.getT1(), pageRequest, t.getT2()));
-    }
-
-    public Flux<Customer> search(Customer customer) {
-        return customerRepository.findAll(Example.of(customer));
     }
 
 }
