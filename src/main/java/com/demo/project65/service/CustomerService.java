@@ -68,4 +68,11 @@ public class CustomerService {
         return customerRepository.findAll(example);
         //return customerRepository.findAll(Example.of(customer));
     }
+
+    public Mono<Customer> findOne(Customer customer) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.EXACT);
+        Example<Customer> example = Example.of(customer, matcher);
+        return customerRepository.findOne(example);
+    }
 }

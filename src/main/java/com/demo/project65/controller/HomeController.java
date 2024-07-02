@@ -70,4 +70,9 @@ public class HomeController {
     public Flux<Customer> search(@RequestBody Customer customer) {
         return customerService.search(customer);
     }
+
+    @PostMapping("/findOne")
+    public Mono<Customer> findOne(@RequestBody Customer customer) {
+        return customerService.findOne(customer);
+    }
 }
