@@ -6,7 +6,7 @@ spring:
     pool:
       enabled: true
       initial-size: 10
-      maxSize: 30
+      max-size: 30
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-main.yaml
