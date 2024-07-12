@@ -31,9 +31,9 @@ public class Customer {
     public String name;
     public Integer age;
     public Json metadata;
+    private PaymentType paymentType;
     @CreatedDate
     public LocalDateTime createdAt;
-    private PaymentType paymentType;
     @LastModifiedDate
     private LocalDateTime updatedAt;
     @CreatedBy
