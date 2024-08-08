@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.demo.project65.domain.Customer;
 import com.demo.project65.repository.CustomerRepository;
+import com.demo.project65.service.CustomerService;
 import com.demo.project65.service.DataService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -33,10 +34,13 @@ public class HomeControllerTest {
     @MockBean
     DataService dataService;
 
+    @MockBean
+    CustomerService customerService;
+
     @Test
     public void test_findAll() throws Exception {
         UUID id = UUID.randomUUID();
-        Mockito.when(customerRepository.findAll())
+        Mockito.when(customerService.findAll())
                 .thenReturn(Flux.just(Customer.builder().id(id).age(30).name("jack").build()));
 
         webTestClient.get().uri("/customer/all")
@@ -44,7 +48,7 @@ public class HomeControllerTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Customer.class);
-        Mockito.verify(customerRepository, times(1)).findAll();
+        Mockito.verify(customerService, times(1)).findAll();
 
     }
 }

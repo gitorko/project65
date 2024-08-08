@@ -10,13 +10,13 @@ Check version
 
 ```bash
 $java --version
-openjdk 17.0.3 2022-04-19 LTS
+openjdk version "21.0.3" 2024-04-16 LTS
 ```
 
 ### Postgres DB
 
 ```bash
-docker run -p 5432:5432 --name pg-container -e POSTGRES_PASSWORD=password -d postgres:9.6.10
+docker run -p 5432:5432 --name pg-container -e POSTGRES_PASSWORD=password -d postgres:14
 docker ps
 docker exec -it pg-container psql -U postgres -W postgres
 CREATE USER test WITH PASSWORD 'test@123';
